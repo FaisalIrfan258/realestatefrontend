@@ -41,7 +41,7 @@ export function Chatbot() {
           <div className="flex items-center justify-between p-3 border-b border-gray-200 dark:border-gray-800 bg-primary text-primary-foreground">
             <div className="flex items-center gap-2">
               <Image 
-                src="/robot.png" 
+                src="/chatbot.png" 
                 alt="Chatbot" 
                 width={20} 
                 height={20} 
@@ -123,7 +123,7 @@ export function Chatbot() {
         >
           <div className="animate-bounce-slow">
             <Image 
-              src="/robot.png" 
+              src="/chatbot.png" 
               alt="Chatbot" 
               width={40} 
               height={40} 

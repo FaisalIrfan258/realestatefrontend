@@ -185,8 +185,14 @@ export async function getChatbotHistory(sessionId: string) {
       },
     });
 
+    // Even if response is not OK, don't throw an error
+    // Just return a default response structure
     if (!response.ok) {
-      throw new Error("Failed to fetch chatbot history");
+      console.warn(`Failed to fetch chatbot history: ${response.status} ${response.statusText}`);
+      return {
+        success: false,
+        history: [],
+      };
     }
 
     const data: ChatHistoryResponse = await response.json();

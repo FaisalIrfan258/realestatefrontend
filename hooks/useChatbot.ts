@@ -16,7 +16,10 @@ export function useChatbot() {
     const savedSessionId = localStorage.getItem('chatbotSessionId');
     if (savedSessionId) {
       setSessionId(savedSessionId);
-      loadChatHistory(savedSessionId);
+      loadChatHistory(savedSessionId).catch(() => {
+        // If loading history fails, just continue with empty messages
+        // This prevents the error from breaking the UI
+      });
     }
   }, []);
 
@@ -25,7 +28,7 @@ export function useChatbot() {
     setIsLoading(true);
     try {
       const response = await getChatbotHistory(sid);
-      if (response.success && response.history.length > 0) {
+      if (response.success && response.history && response.history.length > 0) {
         const formattedMessages: Message[] = [];
         response.history.forEach((item) => {
           formattedMessages.push({ type: 'user', content: item.user });
@@ -35,6 +38,8 @@ export function useChatbot() {
       }
     } catch (error) {
       console.error('Error loading chat history:', error);
+      // Don't throw the error further, just log it
+      // This prevents the error from breaking the UI
     } finally {
       setIsLoading(false);
     }
@@ -89,7 +94,10 @@ export function useChatbot() {
     if (sessionId) {
       setIsLoading(true);
       try {
-        await clearChatbotHistory(sessionId);
+        await clearChatbotHistory(sessionId).catch(error => {
+          console.error('Error clearing chat history:', error);
+          // Continue even if API call fails
+        });
         setMessages([]);
         // Keep the session ID but clear the messages
       } catch (error) {

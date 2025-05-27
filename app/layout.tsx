@@ -13,6 +13,10 @@ export const metadata: Metadata = {
   title: 'Nasir Property Consultant | Premium Real Estate Services',
   description: 'Find your dream property with Nasir Property Consultant. We offer a wide range of residential and commercial properties.',
   keywords: 'real estate, property, buy, sell, rent, homes, apartments, commercial, residential',
+  icons: {
+    icon: '/logo-white.png',
+    apple: '/logo-white.png',
+  },
 };
 
 export default function RootLayout({
@@ -22,6 +26,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <link rel="icon" href="/logo-white.png" />
+      </head>
       <body className={inter.className}>
         <ThemeProvider attribute="class" defaultTheme="light">
           <div className="flex min-h-screen flex-col">
