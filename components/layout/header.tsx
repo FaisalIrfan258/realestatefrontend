@@ -31,72 +31,127 @@ const Header = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Disable scrolling when menu is open
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isOpen]);
+
   const toggleMenu = () => setIsOpen(!isOpen);
   const closeMenu = () => setIsOpen(false);
 
+  // Function to determine which logo to show based on scroll state and theme
+  const getLogoSrc = () => {
+    if (!mounted) return "";
+    
+    if (theme === 'dark') {
+      // In dark mode, always use white logo
+      return "/logo-white.png";
+    } else {
+      // In light mode, use white logo when not scrolled on home page, otherwise use regular logo
+      return (!scrolled && isHomePage) ? "/logo-white.png" : "/logo.png";
+    }
+  };
+
   return (
-    <header
-      className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
-        scrolled
-          ? "bg-background/95 backdrop-blur-md shadow-md py-3"
-          : isHomePage ? "bg-transparent py-5" : "bg-background/95 py-5 shadow-sm"
-      )}
-    >
-      <div className="container mx-auto px-4 flex justify-between items-center">
-        <Link href="/" className="flex items-center gap-2">
-          {mounted && (
-            <Image 
-              src={theme === 'dark' ? "/logo-white.png" : "/logo.png"} 
-              alt="Nasir Property Logo" 
-              width={100} 
-              height={100} 
-              className=" object-contain" 
-            />
-          )}
-          
-        </Link>
+    <>
+      <header
+        className={cn(
+          "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
+          scrolled
+            ? "bg-background/95 backdrop-blur-md shadow-md py-3"
+            : isHomePage ? "bg-transparent py-5" : "bg-background/95 py-5 shadow-sm",
+          isOpen ? "opacity-0 pointer-events-none" : "opacity-100"
+        )}
+      >
+        <div className="container mx-auto px-4 flex justify-between items-center">
+          <Link href="/" className="flex items-center gap-2">
+            {mounted && (
+              <Image 
+                src={getLogoSrc()} 
+                alt="Nasir Property Logo" 
+                width={100} 
+                height={100} 
+                className="object-contain" 
+              />
+            )}
+          </Link>
 
-        {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center gap-6">
-          <NavLink href="/" label="Home" scrolled={scrolled} isHomePage={isHomePage} />
-          <NavLink href="/properties" label="Properties" scrolled={scrolled} isHomePage={isHomePage} />
-          <NavLink href="/about" label="About Us" scrolled={scrolled} isHomePage={isHomePage} />
-          <ThemeToggle />
-          <Button asChild size="sm" className="ml-2">
-            <Link href="/contact">Get In Touch</Link>
-          </Button>
-        </nav>
+          {/* Desktop Navigation */}
+          <nav className="hidden md:flex items-center gap-6">
+            <NavLink href="/" label="Home" scrolled={scrolled} isHomePage={isHomePage} />
+            <NavLink href="/properties" label="Properties" scrolled={scrolled} isHomePage={isHomePage} />
+            <NavLink href="/about" label="About Us" scrolled={scrolled} isHomePage={isHomePage} />
+            <ThemeToggle />
+            <Button asChild size="sm" className="ml-2">
+              <Link href="/contact">Get In Touch</Link>
+            </Button>
+          </nav>
 
-        {/* Mobile Menu Button */}
-        <div className="md:hidden flex items-center gap-2">
-          <ThemeToggle />
+          {/* Mobile Menu Button - Only visible when menu is closed */}
+          <div className="md:hidden flex items-center gap-2">
+            <ThemeToggle />
+            <button
+              onClick={toggleMenu}
+              className="text-primary dark:text-primary-foreground"
+              aria-label="Toggle menu"
+            >
+              <Menu className="h-6 w-6" />
+            </button>
+          </div>
+        </div>
+      </header>
+
+      {/* Mobile Navigation - Separate from header */}
+      <div 
+        className={cn(
+          "fixed inset-0 bg-background dark:bg-background z-40 md:hidden transition-opacity duration-300",
+          isOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+        )}
+      >
+        {/* Close button positioned at the top right */}
+        <div className="absolute top-5 right-4 z-50">
           <button
-            onClick={toggleMenu}
-            className="z-50 text-primary dark:text-primary-foreground"
-            aria-label="Toggle menu"
+            onClick={closeMenu}
+            className="text-primary dark:text-primary-foreground p-2"
+            aria-label="Close menu"
           >
-            {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+            <X className="h-6 w-6" />
           </button>
         </div>
-
-        {/* Mobile Navigation */}
-        <div
-          className={cn(
-            "fixed inset-0 bg-background dark:bg-background z-40 flex flex-col items-center justify-center gap-8 transform transition-transform duration-300 ease-in-out md:hidden",
-            isOpen ? "translate-x-0" : "translate-x-full"
-          )}
-        >
-          <MobileNavLink href="/" label="Home" icon={<Home className="h-5 w-5" />} onClick={closeMenu} />
-          <MobileNavLink href="/properties" label="Properties" icon={<Building className="h-5 w-5" />} onClick={closeMenu} />
-          <MobileNavLink href="/about" label="About Us" icon={<Users className="h-5 w-5" />} onClick={closeMenu} />
-          <MobileNavLink href="/contact" label="Contact" icon={<Phone className="h-5 w-5" />} onClick={closeMenu} />
-          <Button asChild size="lg" className="mt-4 w-3/4 max-w-xs">
-            <Link href="/contact" onClick={closeMenu}>Get In Touch</Link>
-          </Button>
+        
+        <div className="h-full flex flex-col items-center justify-center p-4">
+          {/* Logo in mobile menu */}
+          <div className="mb-10">
+            {mounted && (
+              <Image 
+                src={theme === 'dark' ? "/logo-white.png" : "/logo.png"} 
+                alt="Nasir Property Logo" 
+                width={150} 
+                height={150} 
+                className="object-contain" 
+              />
+            )}
+          </div>
+          
+          <div className="flex flex-col items-center gap-8 w-full max-w-xs">
+            <MobileNavLink href="/" label="Home" icon={<Home className="h-5 w-5" />} onClick={closeMenu} />
+            <MobileNavLink href="/properties" label="Properties" icon={<Building className="h-5 w-5" />} onClick={closeMenu} />
+            <MobileNavLink href="/about" label="About Us" icon={<Users className="h-5 w-5" />} onClick={closeMenu} />
+            <MobileNavLink href="/contact" label="Contact" icon={<Phone className="h-5 w-5" />} onClick={closeMenu} />
+            <Button asChild size="lg" className="mt-4 w-full">
+              <Link href="/contact" onClick={closeMenu}>Get In Touch</Link>
+            </Button>
+          </div>
         </div>
       </div>
-    </header>
+    </>
   );
 };
 
