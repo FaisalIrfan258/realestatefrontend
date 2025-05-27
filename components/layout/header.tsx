@@ -88,7 +88,13 @@ const Header = () => {
             <NavLink href="/" label="Home" scrolled={scrolled} isHomePage={isHomePage} />
             <NavLink href="/properties" label="Properties" scrolled={scrolled} isHomePage={isHomePage} />
             <NavLink href="/about" label="About Us" scrolled={scrolled} isHomePage={isHomePage} />
-            <ThemeToggle />
+            <ThemeToggle 
+              iconClassName={
+                scrolled || !isHomePage 
+                  ? "" 
+                  : "text-white"
+              } 
+            />
             <Button asChild size="sm" className="ml-2">
               <Link href="/contact">Get In Touch</Link>
             </Button>
@@ -96,10 +102,19 @@ const Header = () => {
 
           {/* Mobile Menu Button - Only visible when menu is closed */}
           <div className="md:hidden flex items-center gap-2">
-            <ThemeToggle />
+            <ThemeToggle 
+              iconClassName={
+                scrolled || !isHomePage 
+                  ? "" 
+                  : "text-white"
+              } 
+            />
             <button
               onClick={toggleMenu}
-              className="text-primary dark:text-primary-foreground"
+              className={cn(
+                "text-primary dark:text-primary-foreground",
+                !scrolled && isHomePage ? "text-white" : ""
+              )}
               aria-label="Toggle menu"
             >
               <Menu className="h-6 w-6" />

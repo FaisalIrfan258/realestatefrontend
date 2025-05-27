@@ -15,19 +15,19 @@ export default function AboutPage() {
 
   const milestones = [
     {
-      year: "2008",
+      year: "2015",
       title: "Company Founded",
       description: "Nasir Property Consultant was established with a focus on residential properties.",
       image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
     },
     {
-      year: "2012",
+      year: "2020",
       title: "Expansion to Commercial",
       description: "Extended services to include commercial properties and investment consulting.",
       image: "https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80"
     },
     {
-      year: "2015",
+      year: "2025",
       title: "Digital Transformation",
       description: "Launched our online platform to better serve clients with virtual property tours.",
       image: "https://images.unsplash.com/photo-1560179707-f14e90ef3623?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2073&q=80"
@@ -102,7 +102,7 @@ export default function AboutPage() {
           <div className="max-w-3xl mx-auto text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold mb-6">Our Story</h2>
             <p className="text-muted-foreground mb-4">
-              Nasir Property Consultant was founded in 2008 by Nasir Ahmed, a visionary real estate professional with a passion for helping people find their ideal properties. What started as a small consultancy has grown into a trusted name in the real estate industry.
+              Nasir Property Consultant was founded in 2015 by Nasir Ahmed, a visionary real estate professional with a passion for helping people find their ideal properties. What started as a small consultancy has grown into a trusted name in the real estate industry.
             </p>
             <p className="text-muted-foreground">
               Our journey has been defined by a commitment to excellence, integrity, and personalized service. Over the years, we've helped thousands of clients—from first-time homebuyers to seasoned investors—navigate the complex real estate market and find properties that meet their unique needs and aspirations.
@@ -118,51 +118,32 @@ export default function AboutPage() {
                 className="timeline-item timeline-item-desktop relative flex items-center mb-24 last:mb-0"
               >
                 <div className="flex w-full items-center">
-                  {/* Left side (odd indexes) */}
-                  <div className={`w-1/2 pr-12 ${index % 2 === 1 ? 'order-1' : ''}`}>
-                    {index % 2 === 1 ? (
-                      <div className="text-right">
-                        <span className="inline-block bg-primary text-white text-sm py-1 px-3 rounded-full mb-2">{milestone.year}</span>
-                        <h3 className="text-xl font-semibold mb-2">{milestone.title}</h3>
-                        <p className="text-muted-foreground mb-4">{milestone.description}</p>
-                      </div>
-                    ) : (
-                      <div className="relative aspect-video rounded-lg overflow-hidden shadow-lg transform transition-transform duration-500 hover:scale-105">
-                        <Image
-                          src={milestone.image}
-                          alt={milestone.title}
-                          fill
-                          className="object-cover"
-                        />
-                      </div>
-                    )}
+                  {/* Left side */}
+                  <div className="w-1/2 pr-12">
+                    <div className="text-right">
+                      <span className="inline-block bg-primary text-white text-sm py-1 px-3 rounded-full mb-2">{milestone.year}</span>
+                      <h3 className="text-xl font-semibold mb-2">{milestone.title}</h3>
+                      <p className="text-muted-foreground mb-4">{milestone.description}</p>
+                    </div>
                   </div>
                   
                   {/* Center Circle */}
                   <div className="absolute left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-                    <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center border-4 border-white dark:border-gray-900 shadow-lg animate-pulse">
+                    <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center border-4 border-white dark:border-gray-900 shadow-lg">
                       <Clock className="h-5 w-5 text-primary" />
                     </div>
                   </div>
                   
-                  {/* Right side (even indexes) */}
-                  <div className={`w-1/2 pl-12 ${index % 2 === 0 ? 'order-2' : ''}`}>
-                    {index % 2 === 0 ? (
-                      <div>
-                        <span className="inline-block bg-primary text-white text-sm py-1 px-3 rounded-full mb-2">{milestone.year}</span>
-                        <h3 className="text-xl font-semibold mb-2">{milestone.title}</h3>
-                        <p className="text-muted-foreground mb-4">{milestone.description}</p>
-                      </div>
-                    ) : (
-                      <div className="relative aspect-video rounded-lg overflow-hidden shadow-lg transform transition-transform duration-500 hover:scale-105">
-                        <Image
-                          src={milestone.image}
-                          alt={milestone.title}
-                          fill
-                          className="object-cover"
-                        />
-                      </div>
-                    )}
+                  {/* Right side */}
+                  <div className="w-1/2 pl-12">
+                    <div className="relative h-64 rounded-lg overflow-hidden shadow-lg">
+                      <Image
+                        src={milestone.image}
+                        alt={milestone.title}
+                        fill
+                        className="object-cover"
+                      />
+                    </div>
                   </div>
                 </div>
               </div>
@@ -178,10 +159,10 @@ export default function AboutPage() {
                 className="timeline-item timeline-item-mobile relative pl-16 mb-12 last:mb-0"
               >
                 <div className="absolute left-[13px] w-3 h-3 bg-primary rounded-full" />
-                <div className="absolute left-0 w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center animate-pulse">
+                <div className="absolute left-0 w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center">
                   <Clock className="h-4 w-4 text-primary" />
                 </div>
-                <div className="relative aspect-video rounded-lg overflow-hidden shadow-lg mb-4">
+                <div className="relative h-48 rounded-lg overflow-hidden shadow-lg mb-4">
                   <Image
                     src={milestone.image}
                     alt={milestone.title}
