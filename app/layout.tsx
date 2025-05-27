@@ -22,7 +22,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
-        <ThemeProvider attribute="class" defaultTheme="light  ">
+        <ThemeProvider attribute="class" defaultTheme="light">
           <div className="flex min-h-screen flex-col">
             <Header />
             <main className="flex-1">{children}</main>
