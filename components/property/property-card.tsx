@@ -26,7 +26,7 @@ export default function PropertyCard({ property }: PropertyCardProps) {
   const propertyImage = images && images.length > 0 ? images[0] : defaultImage;
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-md transition-all duration-300 hover:shadow-lg hover:translate-y-[-5px]">
+    <div className="bg-white dark:bg-gray-900 rounded-lg overflow-hidden shadow-md transition-all duration-300 hover:shadow-lg hover:translate-y-[-5px]">
       {/* Property Category Tag */}
       <div className="relative">
         <div className="absolute top-4 left-4 z-10">

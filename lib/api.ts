@@ -38,7 +38,8 @@ export type ContactFormData = {
 };
 
 // API base URL - Using empty string for Next.js API routes
-const API_BASE_URL = "https://6nh44dlchh.execute-api.us-east-1.amazonaws.com";
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
+
 
 // Fetch all properties with optional filters
 export async function getProperties(filters?: Record<string, string | number>) {
@@ -99,16 +100,30 @@ export async function getPropertyById(id: string) {
 
 // Submit contact form
 export async function submitContactForm(formData: ContactFormData) {
-  // Mock implementation for testing purposes
-  console.log("Form submitted:", formData);
-  
-  // Simulate API call with a delay
-  return new Promise<{success: boolean, message: string}>((resolve) => {
-    setTimeout(() => {
-      resolve({
-        success: true,
-        message: "Form submitted successfully",
-      });
-    }, 500);
-  });
+  try {
+    console.log("Submitting form data:", formData);
+    
+    const response = await fetch(`${API_BASE_URL}/api/contact`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    });
+
+    console.log("API response status:", response.status);
+    
+    // Parse the JSON response
+    const data = await response.json();
+    console.log("API response data:", data);
+    
+    // Return the exact response from the API
+    return data;
+  } catch (error) {
+    console.error("Error submitting contact form:", error);
+    return {
+      success: false,
+      message: "Failed to submit form",
+    };
+  }
 }

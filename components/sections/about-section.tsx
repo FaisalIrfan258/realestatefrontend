@@ -39,11 +39,11 @@ const AboutSection = () => {
               About <span className="text-primary">Nasir Property</span> Consultant
             </h2>
             
-            <p className="text-muted-foreground mb-6">
+            <p className="text-muted-foreground mb-6 dark:text-white">
               Founded with a vision to transform the real estate experience, Nasir Property Consultant has been a trusted name in the industry for over 15 years. We specialize in helping our clients find their dream properties and make sound investment decisions.
             </p>
             
-            <p className="text-muted-foreground mb-8">
+            <p className="text-muted-foreground mb-8 dark:text-white">
               Our team of experienced professionals is dedicated to providing personalized service, market insights, and seamless transactions. We understand that property decisions are significant life choices, and we're committed to guiding you every step of the way.
             </p>
 

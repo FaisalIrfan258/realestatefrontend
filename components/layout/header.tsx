@@ -8,12 +8,19 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { usePathname } from "next/navigation";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
+import { useTheme } from "next-themes";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
   const isHomePage = pathname === "/";
+  const { theme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -32,19 +39,22 @@ const Header = () => {
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
         scrolled
-          ? "bg-white/95 dark:bg-gray-900/95 backdrop-blur-md shadow-md py-3"
-          : isHomePage ? "bg-transparent py-5" : "bg-white/95 dark:bg-gray-900/95 py-5 shadow-sm"
+          ? "bg-background/95 backdrop-blur-md shadow-md py-3"
+          : isHomePage ? "bg-transparent py-5" : "bg-background/95 py-5 shadow-sm"
       )}
     >
       <div className="container mx-auto px-4 flex justify-between items-center">
-        <Link href="/" className="flex items-center gap-2 font-bold text-xl">
-          <Building className="h-6 w-6 text-primary" />
-          <span className={cn(
-            "transition-colors duration-300",
-            scrolled || isOpen || !isHomePage ? "text-primary dark:text-primary" : "text-white dark:text-white"
-          )}>
-            Nasir Property
-          </span>
+        <Link href="/" className="flex items-center gap-2">
+          {mounted && (
+            <Image 
+              src={theme === 'dark' ? "/logo-white.png" : "/logo.png"} 
+              alt="Nasir Property Logo" 
+              width={100} 
+              height={100} 
+              className=" object-contain" 
+            />
+          )}
+          
         </Link>
 
         {/* Desktop Navigation */}
@@ -73,7 +83,7 @@ const Header = () => {
         {/* Mobile Navigation */}
         <div
           className={cn(
-            "fixed inset-0 bg-white dark:bg-gray-900 z-40 flex flex-col items-center justify-center gap-8 transform transition-transform duration-300 ease-in-out md:hidden",
+            "fixed inset-0 bg-background dark:bg-background z-40 flex flex-col items-center justify-center gap-8 transform transition-transform duration-300 ease-in-out md:hidden",
             isOpen ? "translate-x-0" : "translate-x-full"
           )}
         >
@@ -102,8 +112,8 @@ const NavLink = ({ href, label, scrolled, isHomePage }: NavLinkProps) => (
     href={href} 
     className={cn(
       "font-medium transition-colors duration-300 hover:text-primary",
-      scrolled ? "text-gray-800 dark:text-gray-200" : 
-      isHomePage ? "text-white dark:text-gray-200" : "text-gray-800 dark:text-gray-200"
+      scrolled ? "text-foreground" : 
+      isHomePage ? "text-white dark:text-gray-200" : "text-foreground"
     )}
   >
     {label}
@@ -120,7 +130,7 @@ interface MobileNavLinkProps {
 const MobileNavLink = ({ href, label, icon, onClick }: MobileNavLinkProps) => (
   <Link 
     href={href} 
-    className="flex items-center gap-3 text-lg font-medium text-gray-800 dark:text-gray-200 hover:text-primary dark:hover:text-primary transition-colors"
+    className="flex items-center gap-3 text-lg font-medium text-foreground hover:text-primary transition-colors"
     onClick={onClick}
   >
     {icon}

@@ -49,14 +49,19 @@ export default function ContactForm({ propertyName }: ContactFormProps) {
     try {
       const response = await submitContactForm(values);
       
-      if (response?.success) {
+      // Log the response for debugging
+      console.log("Contact form submission response:", response);
+      
+      // The server returns { success: true, contact: {...} }
+      if (response && response.success) {
         // Store the name for the confirmation dialog
         setSubmittedName(values.name);
         
-        // Show fancy success toast
-        showSuccessToast({
+        // Show success toast
+        toast({
           title: "Message sent successfully",
           description: "We'll get back to you as soon as possible.",
+          variant: "default",
         });
         
         // Show the confirmation dialog
@@ -65,7 +70,8 @@ export default function ContactForm({ propertyName }: ContactFormProps) {
         // Reset the form
         form.reset();
       } else {
-        throw new Error("Form submission was not successful");
+        // If the response does not have success: true
+        throw new Error(response?.message || "Form submission failed");
       }
     } catch (error) {
       console.error("Error in form submission:", error);

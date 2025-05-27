@@ -4,27 +4,24 @@ const TestimonialsSection = () => {
   const testimonials = [
     {
       id: 1,
-      name: "Sarah Johnson",
+      name: "Ayesha Khan",
       position: "Homeowner",
       rating: 5,
-      image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80",
-      quote: "Working with Nasir Property Consultant was a game-changer. They understood exactly what we were looking for and found us our dream home within our budget. The entire process was smooth and stress-free."
+      quote: "Nasir Property Consultant helped us find our perfect home. They understood what we wanted and made the process very easy. We are very happy with their service."
     },
     {
       id: 2,
-      name: "Michael Chen",
+      name: "Imran Ahmed",
       position: "Property Investor",
       rating: 5,
-      image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80",
-      quote: "As an investor, I appreciate the market insights and professional guidance provided by the team. They helped me acquire multiple properties with excellent ROI potential. Highly recommend their services."
+      quote: "As an investor, I trust Nasir Property for their market knowledge. They helped me buy several good properties. I recommend them to everyone looking to invest."
     },
     {
       id: 3,
-      name: "Priya Sharma",
+      name: "Fatima Malik",
       position: "First-time Buyer",
       rating: 5,
-      image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=778&q=80",
-      quote: "As a first-time buyer, I was nervous about the process. The team at Nasir Property made everything clear and guided me through each step. I'm now a proud homeowner thanks to their dedication and patience."
+      quote: "I was nervous about buying my first home. Nasir Property team explained everything clearly and helped me through each step. Now I have my own home thanks to them."
     }
   ];
 
@@ -42,18 +39,9 @@ const TestimonialsSection = () => {
           {testimonials.map((testimonial) => (
             <div key={testimonial.id} className="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-md">
               <div className="flex justify-between items-start mb-4">
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-full overflow-hidden">
-                    <img 
-                      src={testimonial.image} 
-                      alt={testimonial.name} 
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                  <div>
-                    <h4 className="font-semibold">{testimonial.name}</h4>
-                    <p className="text-sm text-muted-foreground">{testimonial.position}</p>
-                  </div>
+                <div>
+                  <h4 className="font-semibold">{testimonial.name}</h4>
+                  <p className="text-sm text-muted-foreground">{testimonial.position}</p>
                 </div>
                 <div className="flex">
                   {[...Array(testimonial.rating)].map((_, i) => (
