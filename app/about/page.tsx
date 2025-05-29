@@ -102,7 +102,7 @@ export default function AboutPage() {
           <div className="max-w-3xl mx-auto text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold mb-6">Our Story</h2>
             <p className="text-muted-foreground mb-4">
-              Nasir Property Consultant was founded in 2015 by Nasir Ahmed, a visionary real estate professional with a passion for helping people find their ideal properties. What started as a small consultancy has grown into a trusted name in the real estate industry.
+              Nasir Property Consultant was founded in 2015 by Nasir Khan, a visionary real estate professional with a passion for helping people find their ideal properties. What started as a small consultancy has grown into a trusted name in the real estate industry.
             </p>
             <p className="text-muted-foreground">
               Our journey has been defined by a commitment to excellence, integrity, and personalized service. Over the years, we've helped thousands of clients—from first-time homebuyers to seasoned investors—navigate the complex real estate market and find properties that meet their unique needs and aspirations.

@@ -212,10 +212,10 @@ export default async function PropertyPage({ params }: PropertyPageProps) {
                   <h3 className="text-xl font-bold mb-4">Property Agent</h3>
                   <div className="flex items-center gap-4 mb-4">
                     <div className="h-16 w-16 rounded-full overflow-hidden relative">
-                      <Image src="/nasir.jpg" alt="Nasir Ahmed - Property Agent" fill className="object-cover" />
+                      <Image src="/nasir.jpg" alt="Nasir Khan - Property Agent" fill className="object-cover" />
                     </div>
                     <div>
-                      <h4 className="font-semibold">Nasir Ahmed</h4>
+                      <h4 className="font-semibold">Nasir Khan</h4>
                       <p className="text-sm text-muted-foreground">Senior Property Consultant</p>
                     </div>
                   </div>
