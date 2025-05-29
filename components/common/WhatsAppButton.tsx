@@ -4,13 +4,11 @@ import { FaWhatsapp } from "react-icons/fa";
 import { cn } from "@/lib/utils";
 
 interface WhatsAppButtonProps {
-  phoneNumber: string;
   className?: string;
 }
 
-const WhatsAppButton = ({ phoneNumber, className }: WhatsAppButtonProps) => {
-  const formattedNumber = phoneNumber.replace(/\s+/g, "");
-  const whatsappUrl = `https://wa.me/${formattedNumber}`;
+const WhatsAppButton = ({ className }: WhatsAppButtonProps) => {
+  const whatsappUrl = `https://wa.me/923182636767`;
   
   return (
     <a

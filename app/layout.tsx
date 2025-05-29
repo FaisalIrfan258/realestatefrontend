@@ -37,7 +37,7 @@ export default function RootLayout({
             <main className="flex-1">{children}</main>
             <Footer />
           </div>
-          <WhatsAppButton phoneNumber="+92 318 2636767" />
+          <WhatsAppButton />
           <Chatbot />
           <Toaster />
         </ThemeProvider>
