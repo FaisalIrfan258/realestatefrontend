@@ -6,6 +6,7 @@ import Header from '@/components/layout/header';
 import Footer from '@/components/layout/footer';
 import { Toaster } from '@/components/ui/toaster';
 import { Chatbot } from '@/components/ui/chatbot';
+import WhatsAppButton from '@/components/common/WhatsAppButton';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -36,6 +37,7 @@ export default function RootLayout({
             <main className="flex-1">{children}</main>
             <Footer />
           </div>
+          <WhatsAppButton phoneNumber="+92 318 2636767" />
           <Chatbot />
           <Toaster />
         </ThemeProvider>

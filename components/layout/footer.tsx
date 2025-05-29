@@ -43,7 +43,7 @@ const Footer = () => {
               <a href="https://www.facebook.com/people/NASIR-Property-Consultant/100087682164251/?rdid=7KGnxJddFuhheCza&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1FHfRY18NY%2F" className="text-muted-foreground hover:text-primary transition-colors">
                 <Facebook className="h-5 w-5" />
               </a>
-              <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
+              <a href="https://wa.me/923182636767" className="text-muted-foreground hover:text-primary transition-colors">
                 <FaWhatsapp className="h-5 w-5" />
               </a>
               
@@ -111,14 +111,9 @@ const Footer = () => {
               {/* Address 1 */}
               <div className="flex items-start gap-3">
                 <MapPin className="h-5 w-5 text-primary mt-1" />
-                <span className="">Plot no. 149, street 04, sector C, Akhtar colony Karachi.</span>
+                <span className="">Plot 149, street 04, sector 'C' Akhtar colony near Nazar-e- Mustafa masjid & mazar DHA phase 1 Nadra mega center Karachi.</span>
               </div>
-              
-              {/* Address 2 */}
-              <div className="flex items-start gap-3">
-                <MapPin className="h-5 w-5 text-primary mt-1" />
-                <span className="">Plot no. 05, street No. 02, sector B, main double road Akhtar colony DHA phase 1 Karachi near Nadra mega center.</span>
-              </div>
+         
             
               <div className="flex items-center gap-3">
                 <Phone className="h-5 w-5 text-primary" />
