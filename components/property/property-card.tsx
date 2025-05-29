@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Bed, Bath, Square as SquareFoot, MapPin } from "lucide-react";
 import { Property } from "@/lib/api";
 import { formatCurrency } from "@/lib/utils";
+import ShareProperty from "./share-property";
 
 interface PropertyCardProps {
   property: Property;
@@ -56,6 +57,7 @@ export default function PropertyCard({ property }: PropertyCardProps) {
               {formatCurrency(price)}
             </span>
           </div>
+          <ShareProperty property={property} size="sm" />
         </div>
         
         <Link href={`/properties/${_id}`} className="hover:text-primary transition-colors">

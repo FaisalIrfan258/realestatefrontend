@@ -9,8 +9,9 @@ import ContactForm from "@/components/contact/contact-form"
 import { getPropertyById, getProperties } from "@/lib/api"
 import { formatCurrency } from "@/lib/utils"
 import { notFound } from "next/navigation"
-import { Bed, Bath, SquareIcon as SquareFoot, MapPin, Home, Share2, Heart } from "lucide-react"
+import { Bed, Bath, SquareIcon as SquareFoot, MapPin, Home, Heart } from "lucide-react"
 import PropertyGallery from "@/components/property/property-gallery"
+import ShareProperty from "@/components/property/share-property"
 
 interface PropertyPageProps {
   params: Promise<{ id: string }>
@@ -68,21 +69,21 @@ export default async function PropertyPage({ params }: PropertyPageProps) {
   try {
     const resolvedParams = await params
     const propertyData = await getPropertyById(resolvedParams.id)
-    const property = propertyData?.property
-
-    if (!property) {
-      notFound()
+    
+    if (!propertyData || !propertyData.success) {
+      return notFound()
     }
-
+    
+    const property = propertyData.property
     const {
       title,
-      description,
       price,
+      description,
       location,
-      category,
       bedrooms,
       bathrooms,
       area,
+      category,
       amenities,
       images,
       videos,
@@ -126,10 +127,7 @@ export default async function PropertyPage({ params }: PropertyPageProps) {
                     <Heart className="h-4 w-4 mr-1" />
                     Save
                   </Button>
-                  <Button size="sm" variant="outline">
-                    <Share2 className="h-4 w-4 mr-1" />
-                    Share
-                  </Button>
+                  <ShareProperty property={property} />
                 </div>
               </div>
             </div>
@@ -250,8 +248,8 @@ export default async function PropertyPage({ params }: PropertyPageProps) {
       </div>
     )
   } catch (error) {
-    console.error("Error loading property:", error)
-    notFound()
+    console.error("Error in PropertyPage:", error)
+    return notFound()
   }
 }
 
